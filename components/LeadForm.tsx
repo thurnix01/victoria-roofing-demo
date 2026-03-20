@@ -4,7 +4,6 @@ import { FormEvent, useMemo, useState } from "react";
 import { getSupabaseClient } from "@/lib/supabase";
 
 type FormValues = {
-  business_name: string;
   name: string;
   email: string;
   phone: string;
@@ -16,7 +15,6 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[+]?[0-9()\-\s]{10,20}$/;
 
 const initialValues: FormValues = {
-  business_name: "",
   name: "",
   email: "",
   phone: "",
@@ -35,10 +33,6 @@ export default function LeadForm() {
 
   function validate(current: FormValues): FieldErrors {
     const nextErrors: FieldErrors = {};
-
-    if (!current.business_name.trim()) {
-      nextErrors.business_name = "Business name is required.";
-    }
 
     if (!current.name.trim()) {
       nextErrors.name = "Your name is required.";
@@ -88,7 +82,7 @@ export default function LeadForm() {
       name: values.name.trim(),
       email: values.email.trim(),
       phone: values.phone.trim(),
-      business_name: values.business_name.trim(),
+      business_name: "",
       source: "victoria-roofing-demo",
       client_email: clientEmail,
     };
@@ -128,29 +122,6 @@ export default function LeadForm() {
       )}
 
       <form className="mt-6 grid gap-4" onSubmit={onSubmit} noValidate>
-        <div>
-          <label htmlFor="business_name" className="mb-1 block text-sm font-medium text-slate-700">
-            Business Name
-          </label>
-          <input
-            id="business_name"
-            name="business_name"
-            type="text"
-            autoComplete="organization"
-            value={values.business_name}
-            onChange={(event) => onChange("business_name", event.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200"
-            placeholder="Westshore Property Management"
-            aria-invalid={Boolean(errors.business_name)}
-            aria-describedby={errors.business_name ? "business_name-error" : undefined}
-          />
-          {errors.business_name && (
-            <p id="business_name-error" className="mt-1 text-sm text-rose-600">
-              {errors.business_name}
-            </p>
-          )}
-        </div>
-
         <div>
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-slate-700">
             Name
