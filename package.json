@@ -4,11 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:debug": "NODE_OPTIONS='--inspect' next dev",
+    "port:clear": "sh -c 'PORT=${PORT:-3000}; PIDS=$(lsof -ti tcp:$PORT); if [ -n \"$PIDS\" ]; then kill -9 $PIDS; fi'",
+    "port:clear:debug": "sh -c 'DEBUG_PORT=${DEBUG_PORT:-9229}; PIDS=$(lsof -ti tcp:$DEBUG_PORT); if [ -n \"$PIDS\" ]; then kill -9 $PIDS; fi'",
+    "dev:debug:restart": "npm run port:clear && npm run port:clear:debug && npm run dev:debug",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "git:status": "git status",
+    "github:setup": "git remote add origin https://github.com/thurnix01/victoria-roofing-demo.git || git remote set-url origin https://github.com/thurnix01/victoria-roofing-demo.git",
+    "git:commit": "git add . && git commit -m \"${npm_config_msg:-chore: update project}\"",
+    "git:push": "git push origin main",
+    "deploy:github": "npm run github:setup && npm run build && git add . && git commit -m \"${npm_config_msg:-deploy: production update}\" && git push origin main"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.3",
     "next": "16.2.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
