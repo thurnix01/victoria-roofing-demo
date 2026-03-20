@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+const isGithubPagesDeploy = process.env.GITHUB_ACTIONS === "true";
+const repoBasePath = "/victoria-roofing-demo";
+
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/victoria-roofing-demo",
-  assetPrefix: "/victoria-roofing-demo/",
+  basePath: isGithubPagesDeploy ? repoBasePath : undefined,
+  assetPrefix: isGithubPagesDeploy ? `${repoBasePath}/` : undefined,
   images: {
     unoptimized: true,
   },

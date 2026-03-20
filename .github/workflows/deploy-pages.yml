@@ -18,9 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      NEXT_PUBLIC_CLIENT_EMAIL: ${{ vars.NEXT_PUBLIC_CLIENT_EMAIL }}
+      NEXT_PUBLIC_SUPABASE_URL: https://vshfmixqgazkdagmmgud.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZzaGZtaXhxZ2F6a2RhZ21tZ3VkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3ODU0NzEsImV4cCI6MjA4OTM2MTQ3MX0.KWUIoqRFMZ2cu3NSwVkZmrvIfD-qUx3qogwuTyUuYEI
+      NEXT_PUBLIC_CLIENT_EMAIL: absolondesigns@gmail.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4
